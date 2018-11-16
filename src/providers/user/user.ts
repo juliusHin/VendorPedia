@@ -1,48 +1,82 @@
 import { Injectable } from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http"
+import 'rxjs/add/operator/toPromise'
+import 'rxjs/add/observable/fromPromise'
+// import {HttpClient, HttpParams} from "@angular/common/http"
+import { Api } from '../api/api';
 
 // AUTHOR: Julius Tanuwijaya (juliustanuwijaya.indonesian@gmail.com)
 // untuk user melakukan login, sign-up
 
+// secara default mengembalikan objek JSON
+
+/**
+ * ```json
+ * {
+ *   status: 'success',
+ *   user: {
+ *     // User fields your app needs, like "id", "name", "email", etc.
+ *   }
+ * }Ø
+ * ```
+ */
+
 @Injectable()
 export class User{
-    // url diisi tipe data string untuk tembak ke alamat API
-    url: string = '';
+    _user: any;
 
-    constructor(public http: HttpClient){}
+    constructor(public api: Api){   }
+    
+    /**
+   * Send a POST request to our login endpoint with the data
+   * the user entered on the form.
+   */
+  login(accountInfo: any) {
+    //   TOLONG DICEK KENAPA 'share()' nya error. TERIMA KASIH
+    let seq = this.api.post('login',accountInfo).share();
 
-    get(endpoint: string, params?: any, reqOpts?: any) {
-        if (!reqOpts) {
-          reqOpts = {
-            params: new HttpParams()
-          };
-        }
-    
-        // Support easy query params for GET requests
-        if (params) {
-          reqOpts.params = new HttpParams();
-          for (let k in params) {
-            reqOpts.params = reqOpts.params.set(k, params[k]);
-          }
-        }
-    
-        return this.http.get(this.url + '/' + endpoint, reqOpts);
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response, mark the user as logged in
+      if (res.status == 'success') {
+        this._loggedIn(res);
+      } else {
       }
-    
-      post(endpoint: string, body: any, reqOpts?: any) {
-        return this.http.post(this.url + '/' + endpoint, body, reqOpts);
+    }, err => {
+      console.error('ERROR', err);
+    });
+
+    return seq;
+  }
+
+  /**
+   * Send a POST request to our signup endpoint with the data
+   * the user entered on the form.
+   */
+  signup(accountInfo: any) {
+    let seq = this.api.post('signup', accountInfo).share();
+
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response, mark the user as logged in
+      if (res.status == 'success') {
+        this._loggedIn(res);
       }
-    
-      put(endpoint: string, body: any, reqOpts?: any) {
-        return this.http.put(this.url + '/' + endpoint, body, reqOpts);
-      }
-    
-      delete(endpoint: string, reqOpts?: any) {
-        return this.http.delete(this.url + '/' + endpoint, reqOpts);
-      }
-    
-      patch(endpoint: string, body: any, reqOpts?: any) {
-        return this.http.patch(this.url + '/' + endpoint, body, reqOpts);
-      }
-    
+    }, err => {
+      console.error('ERROR', err);
+    });
+
+    return seq;
+  }
+
+  /**
+   * Log the user out, which forgets the session
+   */
+  logout() {
+    this._user = null;
+  }
+
+  /**
+   * Process a login/signup response to store user data
+   */
+  _loggedIn(resp) {
+    this._user = resp.user;
+  }
 }
