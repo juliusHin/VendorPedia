@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Sign In</ion-title>
   </ion-navbar>
 
@@ -28,5 +31,16 @@
         </div>
       </div>
     </ion-list>
+
+    <div padding-horizontal>
+      <div class="form-error">
+        {{loginError}}
+      </div>
+
+      <button ion-button type="submit" [disabled]="!signInForm.valid">Sign In</button>
+      <div class="">
+
+      </div>
+    </div>
   </form>
 </ion-content>

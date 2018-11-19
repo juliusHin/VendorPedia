@@ -1,15 +1,20 @@
+import { Platform } from 'ionic-angular';
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app'
 import AuthProvider = firebase.auth.AuthProvider
+import {BehaviorSubject} from 'rxjs';
+
+const TOKEN_KEY = 'auth-token';
 
 @Injectable()
 
 export class AuthService{
     private user: firebase.User;
 
+    authenticationState = new BehaviorSubject(false);
     //AngularFire
-    constructor(public angfAuth: AngularFireAuth){
+    constructor(public angfAuth: AngularFireAuth, private storage: Storage, private plt: Platform){
         angfAuth.authState.subscribe(user =>{
             this.user = user;
         });

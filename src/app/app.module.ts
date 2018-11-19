@@ -1,3 +1,4 @@
+import { AuthService } from './../providers/api/authService';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -15,7 +16,7 @@ import {AngularFireModule} from 'angularfire2'
 import {AngularFireAuth} from 'angularfire2/auth';
 import { firebaseConfig } from './../providers/api/firebaseConfig';
 import { SigninPage } from '../pages/signin/signin';
-import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import {NgxErrorsModule} from '@ultimate/ngxerrors';
 
 
 @NgModule({
@@ -29,7 +30,9 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     // codingan ada di dalam folder /src/providers/api/firebaseConfig.ts
-    AngularFireModule.initializeApp(firebaseConfig.fire)
+    AngularFireModule.initializeApp(firebaseConfig.fire),
+    NgxErrorsModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +46,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireAuth,
-    AuthServiceProvider
+    AuthService
   ]
 })
 export class AppModule {}
