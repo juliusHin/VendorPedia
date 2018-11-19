@@ -14,12 +14,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireModule} from 'angularfire2'
 import {AngularFireAuth} from 'angularfire2/auth';
 import { firebaseConfig } from './../providers/api/firebaseConfig';
+import { SigninPage } from '../pages/signin/signin';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    SigninPage
   ],
   imports: [
     BrowserModule,
@@ -31,13 +35,15 @@ import { firebaseConfig } from './../providers/api/firebaseConfig';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    SigninPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AngularFireAuth
+    AngularFireAuth,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}

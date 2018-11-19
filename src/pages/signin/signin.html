@@ -7,12 +7,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signin</ion-title>
+    <ion-title>Sign In</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+  <form (ngSubmit)="signIn()" [formGroup]="signInForm" >
+    <ion-list inset >
 
+      
+      <ion-item [ngClass]="{invalid: emailErrors.hasError('*', ['touched', 'dirty'])}" >
+        <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <div ngxErrors="email" #emailErrors="ngxErrors">
+        <div [ngxError]="['email', 'required'] " [when]="['touched', 'dirty'] ">
+          It should be a valid email
+        </div>
+      </div>
+    </ion-list>
+  </form>
 </ion-content>

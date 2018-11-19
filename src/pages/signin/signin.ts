@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, Injectable } from '@angular/core';
+import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 /**
  * Generated class for the SigninPage page.
@@ -8,6 +9,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
+//  Injectable()
 @IonicPage()
 @Component({
   selector: 'page-signin',
@@ -16,6 +18,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class SigninPage {
 
   loginForm: FormGroup;
+  loginError: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -24,7 +27,8 @@ export class SigninPage {
     public formBuilder: FormBuilder,
     public clientsService: ClientsService,
     public alertCtrl: AlertController,
-    private storage: Storage
+    private storage: Storage,
+    private auth: Auth
   ) {
     this.loginForm = this.makeLoginForm();
   }

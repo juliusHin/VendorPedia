@@ -33,3 +33,4 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+src/providers/api/mapsService.ts
