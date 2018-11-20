@@ -26,7 +26,7 @@ export class SigninPage {
   signInError: string;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public menuCtrl: MenuController,
     public formBuilder: FormBuilder,
@@ -63,7 +63,7 @@ export class SigninPage {
     this.auth.signInWithEmail(credentials).then(
       // kalau login berhasil maka setRoot berganti ke halaman Homepage user yang telah login
       ()=> this.navCtrl.setRoot(HomePage),
-      error => this.signInError = error.message      
+      error => this.signInError = error.message
     );
   }
 
@@ -77,8 +77,8 @@ export class SigninPage {
       error => console.log(error.message)
     );
   }
-  
-  
+
+
 
 
 
@@ -92,7 +92,7 @@ export class SigninPage {
   //     this.storage.set('user', user);
   //     this.navCtrl.setRoot('HomePage', {
   //       user: username
-  //     }); 
+  //     });
   //   }else{
   //     const alert = this.alertCtrl.create({
   //       title: 'Data tidak valid',
@@ -101,9 +101,8 @@ export class SigninPage {
   //     });
   //     alert.present();
   //   }
-    
-  // }
 
+  // }
 
   // private makeLoginForm() {
   //   return this.formBuilder.group({

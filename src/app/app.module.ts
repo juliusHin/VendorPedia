@@ -1,3 +1,4 @@
+// import { SigninPage } from './../pages/signin/signin';
 import { AuthService } from './../providers/api/authService';
 
 import { BrowserModule } from '@angular/platform-browser';

@@ -20,7 +20,7 @@
   <form (ngSubmit)="signIn()" [formGroup]="signInForm" >
     <ion-list inset >
 
-      
+
       <ion-item [ngClass]="{invalid: emailErrors.hasError('*', ['touched', 'dirty'])}" >
         <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
       </ion-item>
