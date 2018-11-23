@@ -1,0 +1,7 @@
+{
+  "name": "VendoPediaApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
