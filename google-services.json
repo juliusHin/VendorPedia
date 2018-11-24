@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "37472993473",
+    "firebase_url": "https://vendorpedia-6f595.firebaseio.com",
+    "project_id": "vendorpedia-6f595",
+    "storage_bucket": "vendorpedia-6f595.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37472993473:android:2035c1e5a03992e1",
+        "android_client_info": {
+          "package_name": "com.vendorpedia.vendorpediaApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37472993473-s3mnhgbptfonevg7pihc58cbilpg1m4i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vendorpedia.vendorpediaApp",
+            "certificate_hash": "c74d0140975a093ed84adaaad3869ce804600847"
+          }
+        },
+        {
+          "client_id": "37472993473-23lvbdu8td0aetmmqkperemssvqpk0l4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_tY7V8Ir8m98GnJO81bhibo4lOFbLkcw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37472993473-23lvbdu8td0aetmmqkperemssvqpk0l4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

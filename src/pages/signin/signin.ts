@@ -6,7 +6,12 @@ import { Email } from '../../providers/api/emailService';
 import { database } from 'firebase';
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
-import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController, Platform } from 'ionic-angular';
+import * as firebase from 'firebase/app';
+import { AngularFireAuth } from 'angularfire2/auth';
+import {Observable} from 'rxjs/Observable';
+import { GooglePlus } from '@ionic-native/google-plus';
+// import {GooglePlus}
 
 /**
  * Generated class for the SigninPage page.
@@ -15,14 +20,14 @@ import { IonicPage, NavController, NavParams, MenuController, AlertController } 
  * Ionic pages and navigation.
  */
 
-//  Injectable()
 
-// @IonicPage()
 @Component({
   selector: 'page-signin',
   templateUrl: 'signin.html',
 })
 export class SigninPage {
+
+  user: Observable<firebase.User>;
 
   signInForm: FormGroup;
   signInError: string;
@@ -35,12 +40,16 @@ export class SigninPage {
     public alertCtrl: AlertController,
     private storage: Storage,
     private auth: AuthService,
-    fb: FormBuilder
+    fb: FormBuilder,
+    private afAuth: AngularFireAuth,
+    private gplus: GooglePlus,
+    private platform: Platform
   ) {
-    this.signInForm = fb.group({
-      email: ['',Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
-    });
+    // this.signInForm = fb.group({
+    //   email: ['',Validators.compose([Validators.required, Validators.email])],
+    //   password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+    // });
+      this.user = this.afAuth.authState;
   }
 
   ionViewDidLoad() {
@@ -73,13 +82,26 @@ export class SigninPage {
     this.navCtrl.push(SignupPage);
   }
 
-  loginWithGoogle() {
-    this.auth.signInWithGoogle().then(
-      () => this.navCtrl.setRoot(HomePage),
-      error => console.log(error.message)
-    );
+  googleLogin() {
+    if(this.platform.is('cordova')){
+      this.nativeGoogleLogin();
+    }else{
+      this.webGoogleLogin();
+    }
   }
 
+  nativeGoogleLogin(): Promise<void>{
+    try{
+      const gplusUser = await this.gplus.login({
+
+      });
+    }catch{
+
+    }
+  }
+  webGoogleLogin(){
+
+  }
 
 
 

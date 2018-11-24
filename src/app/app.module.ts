@@ -18,6 +18,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import { firebaseConfig } from './../providers/api/firebaseConfig';
 import { SigninPage } from '../pages/signin/signin';
 import {NgxErrorsModule} from '@ultimate/ngxerrors';
+import {GooglePlus} from '@ionic-native/google-plus';
 
 
 @NgModule({
@@ -43,11 +44,12 @@ import {NgxErrorsModule} from '@ultimate/ngxerrors';
     SigninPage
   ],
   providers: [
+    GooglePlus,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireAuth,
-    AuthService
+    AuthService,
   ]
 })
 export class AppModule {}
